@@ -1,0 +1,45 @@
+<div style="display:flex;width:100%;height:100%">
+    <ion-content class="menu-wrapper" #menuwrapper>
+        <ul>
+            <li *ngFor="let item of sellergoods; let i=index" class="menu-item" [class.current]="i===_currentIndex()" (click)="onSelectMenu(i, $event)">
+                <span class="text">
+                  <span *ngIf="item['type']>0" class="icon" [ngClass]="classMap[item['type']]" ></span>{{item['name']}}
+                </span>
+            </li>
+        </ul>
+    </ion-content>
+    <ion-content class="foods-wrapper" #foodswrapper (ionScroll)="onFoodsScroll($event)">
+        <ul>
+            <li *ngFor="let item of sellergoods; let i=index" class="food-list food-list-hook" #foodlists>
+                <div class="title">{{item['name']}}</div>
+                <ul>
+                    <li *ngFor="let food of item['foods']" (click)="onBrowseFood(food,$event)" class="food-item">
+                        <div class="image">
+                            <img width="57" height="57" [src]="food['image']" alt="">
+                        </div>
+                        <div class="content">
+                            <h2 class="name">{{food['name']}}</h2>
+                            <p class="desc">{{food['description']}}</p>
+                            <div class="extra">
+                                <span class="count">月售{{food['sellCount']}}份</span>
+                                <span>好评率{{food['rating']}}%</span>
+                            </div>
+                            <div class="price">
+                                <span class="now">￥{{food['price']}}</span>
+                                <span class="old" *ngIf="food['oldPrice']">￥{{food['oldPrice']}}</span>
+                            </div>
+                            <div class="cartcontrol-wrapper">
+                                <mt-cartcontrol [food]="food"></mt-cartcontrol>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </ion-content>
+    <!--<div #shopcart>-->
+    <!--<mt-shopcart class="shopcartwrapper" [choosedFoods]="choosedFoods" [deliveryPrice]="5" [minPrice]="20" (chooseFoodsEmit)="chooseFoods($event)"></mt-shopcart>-->
+    <!--<mt-shopcart class="shopcartwrapper" [deliveryPrice]="5" [minPrice]="20"></mt-shopcart>-->
+    <!--</div>-->
+    
+</div>

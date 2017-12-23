@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      我的订单
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button *ngIf="state==3">
+        奖励规则
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="light">
+    <ion-segment class="top_segment" [(ngModel)]="state" (ionChange)="loadDataByState()">
+      <ion-segment-button *ngFor="let control of controls" [value]="control.type">
+        {{control.label}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="loading" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list *ngIf="!loading">
+    <ion-item class="order-list" *ngFor="let order of orders" (click)="goToDtl(order.merchantType,order.merchantId)">
+      <!-- <ion-img item-left style="width: 30px; height: 30px;" src="{{order.seller.avatar}}"></ion-img> -->
+      <div class="order-img" item-left>
+        <img [src]="order.seller.avatar" />
+      </div>
+      <h2>{{order.seller.name}}</h2>
+      <h3>下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm'}}</h3>
+      <p>总价：{{order.orderAmtTotal}}</p>
+      <ion-note item-right>
+        <p class="status">{{order.orderStatusDesc}}</p>
+        <button ion-button small outline>再来一单</button>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

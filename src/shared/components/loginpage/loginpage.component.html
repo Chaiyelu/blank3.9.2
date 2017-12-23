@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button small clear color="white" (click)="doClose()">
+              <ion-icon name="cha"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>
+            登录
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only small clear color="white" (click)="doRegsiter()">
+              注册
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="light">
+        <ion-segment class="top_segment" [(ngModel)]="top_segment">
+            <ion-segment-button (click)="select(0)" value="top_0">
+                账号密码登录
+            </ion-segment-button>
+            <ion-segment-button (click)="select(1)" value="top_1">
+                手机号快捷登陆
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-slides (ionSlideDidChange)="panEvent($event)" #mySlider>
+        <ion-slide>
+            <ion-content class="fixed-content">
+                <form [formGroup]="loginForm" novalidate>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>账号</ion-label>
+                            <ion-input type="tel" placeholder="请输入手机号" formControlName="mobile" clearInput=true></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>密码</ion-label>
+                            <ion-input type="password" placeholder="请输入密码" formControlName="password" clearInput=true></ion-input>
+                            <button ion-button small clear item-right color="white">
+                              <ion-icon name="eye"></ion-icon>
+                            </button>
+                        </ion-item>
+                    </ion-list>
+                    <div padding>
+                        <button ion-button block type="submit" [disabled]="!loginForm.valid" (click)="doLogin(loginForm.value)">登录</button>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-slide>
+        <ion-slide>
+            <ion-content class="fixed-content">
+                <form [formGroup]="loginFormByCheckcode" novalidate>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>手机号</ion-label>
+                            <ion-input type="text" placeholder="请输入手机号" formControlName="mobile"></ion-input>
+                            <button ion-button small item-right color="gray" [disabled]="!mobile.valid?true:!btnStatus" (click)="getCheckcode()">{{btnText}}</button>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>验证码</ion-label>
+                            <ion-input type="number" placeholder="请输入验证码" formControlName="code" clearInput=true></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <div padding>
+                        <button ion-button block [disabled]="!loginFormByCheckcode.valid" (click)="doLogin(loginFormByCheckcode.value)">登录</button>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-slide>
+
+    </ion-slides>
+</ion-content>

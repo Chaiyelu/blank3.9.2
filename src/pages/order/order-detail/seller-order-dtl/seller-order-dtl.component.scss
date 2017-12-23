@@ -1,0 +1,32 @@
+seller-order-dtl {
+  .anyfee {
+    padding: 0 16px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .total {
+    padding: 0 16px;
+    height: 30px;
+    line-height: 30px;
+    h3 {
+      line-height: 30px;
+      float: right;
+      margin-right: 15px;
+    }
+    h2 {
+      line-height: 30px;
+      float: right;
+    }
+  }
+  .card-ios {
+    ion-col {
+      h3 {
+        margin: 0px;
+      }
+    }
+  }
+  .food-list:not(:last-child){
+    background-color: #f8f8f8;
+    margin-bottom: 5px;
+  }
+}

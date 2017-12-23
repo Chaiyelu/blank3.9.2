@@ -1,0 +1,17 @@
+<button *ngFor="let control of controls" (click)="direct(control.type)">
+  <div class="num">{{control?.num}}</div>
+  <ion-icon [name]="control.iconName" [color]="control.iconColor"></ion-icon>
+  <p>{{control.label}}</p>
+</button>
+<!-- <button (click)="direct(OrderState.waitUse)">
+  <ion-icon name="youhuijuan1" color="danger"></ion-icon>
+  <p>待使用</p>
+</button>
+<button (click)="direct(OrderState.waitRate)">
+  <ion-icon name="comment-processing" color="secondary"></ion-icon>
+  <p>待评价</p>
+</button>
+<button (click)="direct(OrderState.other)">
+  <ion-icon name="refund" color="pink"></ion-icon>
+  <p>退款/售后</p>
+</button> -->

@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      订单详情
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        奖励规则
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <ion-card-content style="text-align:center;">
+      <button ion-button clear small icon-right>
+        订单已完成
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+      <p>感谢您对xx外卖的支持，欢迎再次光临</p>
+      <button ion-button small>
+        再来一单
+      </button>
+    </ion-card-content>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="img/marty-avatar.png">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>November 5, 1955</p>
+      <button ion-button icon-only clear item-right>
+        <ion-icon name="thumbs-up"></ion-icon>
+      </button>
+      <button ion-button icon-only clear item-right>
+        <ion-icon name="call"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-img style="width: 20px; height: 20px; float:left" src="{{orderDtl?.seller.avatar}}"></ion-img>
+      <div style="float:left; line-height:20px; margin-left:10px; font-size:12px;">{{orderDtl?.seller.name}}</div>
+      <ion-icon style="float:right;" name="arrow-forward"></ion-icon>
+    </ion-card-header>
+
+    <ion-list no-lines>
+
+      <ion-item class="food-list" *ngFor="let item of orderDtl?.sellerOrderDtlList">
+        <ion-thumbnail item-left>
+          <img [src]="item.prodImg">
+        </ion-thumbnail>
+        <h3>{{item.prodNm}}
+          <span style="float:right;">￥{{item?.subtotalAmt}}</span>
+        </h3>
+        <p>x{{item.number}}</p>
+      </ion-item>
+      
+      <!-- <div class="anyfee">包装费
+        <span style="float:right;">￥0</span>
+      </div> -->
+      <div class="anyfee">配送费
+        <span style="float:right;">￥{{orderDtl?.logisticsFee}}</span>
+      </div>
+
+
+      <div class="anyfee">抵用券
+        <span style="float:right;color:brown;">-￥{{orderDtl?.voucherAmt}}</span>
+      </div>
+      <div class="anyfee">商家代金券
+        <span style="float:right;color:brown;">-￥{{orderDtl?.couponAmt}}</span>
+      </div>
+      <div class="total">
+        <h2>合计<span style="color:brown">￥{{orderDtl?.orderAmtTotal}}</span></h2>
+        <h3>优惠￥9</h3>
+      </div>
+    </ion-list>
+    <button ion-button icon-left full clear>
+      <ion-icon name="call"></ion-icon>
+      电话商家
+    </button>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <h3>期望时间</h3>
+        </ion-col>
+        <ion-col>
+          <p>立即送出</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <h3>配送地址</h3>
+        </ion-col>
+        <ion-col>
+          <p>柴叶露 15924009886</p>
+          <p>中信银行大厦（灵桥路）</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <h3>配送服务</h3>
+        </ion-col>
+        <ion-col>
+          <p>提供高品质送餐服务</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <h3>订单号码</h3>
+        </ion-col>
+        <ion-col>
+          <p>{{orderDtl?.orderNo}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <h3>订单时间</h3>
+        </ion-col>
+        <ion-col>
+          <p>{{orderDtl?.createTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <h3>支付方式</h3>
+        </ion-col>
+        <ion-col>
+          <p>在线支付</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

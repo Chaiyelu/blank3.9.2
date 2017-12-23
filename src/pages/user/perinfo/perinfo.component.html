@@ -1,0 +1,39 @@
+<ion-header no-border>
+
+    <ion-navbar color="blue">
+        <ion-title>个人信息</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <mt-split></mt-split>
+    <ion-list no-border>
+
+        <button ion-item (click)="goEditAvatar()">
+            头像
+            <ion-avatar item-right>
+              <img [src]="userInfo.avatar">
+            </ion-avatar>
+        </button>
+        <button ion-item (click)="goEditUsername()">
+            昵称
+            <ion-note item-right>
+              <p>{{userInfo.username}}</p>
+            </ion-note>
+        </button>
+        <button ion-item (click)="goEditBirthday()">
+            生日
+            <ion-note item-right>
+              <p>{{userInfo.birthday}}</p>
+            </ion-note>
+        </button>
+        <button ion-item (click)="goDelivery()">
+            收货地址
+            <ion-note item-right>
+              <p>修改/添加</p>
+            </ion-note>
+        </button>
+    </ion-list>
+
+</ion-content>

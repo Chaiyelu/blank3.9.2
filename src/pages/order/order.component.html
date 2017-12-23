@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      订单
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<!-- <ion-content>
+    <ion-nav [root]="orderHome"></ion-nav>
+</ion-content> -->
+<ion-content>
+  <ion-refresher *ngIf="isLogin" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="loginPage" *ngIf="!isLogin">
+    <ion-icon name="touxiang2" color="gray"></ion-icon>
+    <p>登陆后可查看订单、收藏记录</p>
+    <button ion-button color="secondary" (click)="doLogin()">登录</button>
+  </div>
+
+  <div class="order-home" *ngIf="isLogin">
+    <mt-list-header>
+      <h3 left>我的订单</h3>
+      <button right ion-button small clear (click)="directTo()">
+        全部订单
+        <ion-icon name="right"></ion-icon>
+      </button>
+    </mt-list-header>
+    <order-nav (directTo)="directTo($event)"></order-nav>
+    <mt-split>最近订单</mt-split>
+    <ion-list no-lines>
+      <ion-item class="order-list">
+        <ion-thumbnail item-left>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>农家小院</h2>
+        <h3>下单时间：2106-10-20 11:12</h3>
+        <p>总价：￥33</p>
+        <ion-note item-right>
+          <p class="status">已完成</p>
+          <button ion-button small outline>再来一单</button>
+        </ion-note>
+      </ion-item>
+      <ion-item class="order-list">
+        <ion-thumbnail item-left>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>农家小院</h2>
+        <h3>下单时间：2106-10-20 11:12</h3>
+        <p>总价：￥33</p>
+        <ion-note item-right>
+          <p class="status">已完成</p>
+          <button ion-button small outline>再来一单</button>
+        </ion-note>
+      </ion-item>
+      <button ion-button icon-right full small clear>
+        更多
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-list>
+
+    <mt-split></mt-split>
+
+    <mt-list-header>
+      <h3 left>我的收藏</h3>
+      <button right ion-button small clear (click)="directTo()">
+        查看全部
+        <ion-icon name="right"></ion-icon>
+      </button>
+    </mt-list-header>
+    <ion-list no-lines>
+      <ion-item class="order-list">
+        <ion-thumbnail item-left>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>农家小院</h2>
+        <h3>下单时间：2106-10-20 11:12</h3>
+      </ion-item>
+      <ion-item class="order-list">
+        <ion-thumbnail item-left>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>农家小院</h2>
+        <h3>下单时间：2106-10-20 11:12</h3>
+        <ion-note item-right>
+          <p class="status">已完成</p>
+        </ion-note>
+      </ion-item>
+      <ion-item class="order-list">
+        <ion-thumbnail item-left>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>农家小院</h2>
+        <h3>下单时间：2106-10-20 11:12</h3>
+        <ion-note item-right>
+          <p class="status">已完成</p>
+        </ion-note>
+      </ion-item>
+      <button ion-button icon-right full small clear>
+        更多
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-list>
+
+  </div>
+</ion-content>
